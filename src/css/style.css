@@ -41,7 +41,7 @@ body {
    HEADER
 ═══════════════════════════════════════ */
 .header {
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
@@ -50,14 +50,14 @@ body {
   background: var(--accent);
   border: var(--border-rule);
   box-shadow: var(--shadow-lg);
-  padding: 10px 28px 8px;
+  padding: 8px 22px 6px;
 }
 
 .header h1 {
   font-family: 'Arial Black', Arial, sans-serif;
-  font-size: clamp(24px, 5vw, 38px);
+  font-size: clamp(20px, 4vw, 30px);
   font-weight: 900;
-  letter-spacing: 10px;
+  letter-spacing: 7px;
   text-transform: uppercase;
   color: var(--ink);
   line-height: 1;
@@ -90,7 +90,7 @@ body {
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 60px calc(50% - 20px) 0;
+  padding: 80px calc(50% - 20px) 0;
 }
 
 .shelf-track::-webkit-scrollbar {
@@ -125,7 +125,7 @@ body {
   flex-direction: column;
   cursor: pointer;
   transform-origin: bottom center;
-  filter: brightness(0.62) saturate(0.75);
+  filter: brightness(0.72) saturate(0.8);
   transition:
     transform 0.3s cubic-bezier(0.34, 1.5, 0.64, 1),
     filter 0.3s ease;
@@ -133,7 +133,7 @@ body {
 }
 
 .book.near {
-  filter: brightness(0.85) saturate(0.95);
+  filter: brightness(0.9) saturate(1);
   transform: scale(1.1) translateY(-4px);
   z-index: 4;
 }
@@ -207,7 +207,7 @@ body {
   background: var(--cream);
   color: var(--ink);
   border: var(--border-rule);
-  box-shadow: 4px 4px 0 var(--border);
+  box-shadow: 4px 4px 0 var(--accent);
   font-size: 22px;
   font-weight: 900;
   font-family: 'Arial Black', Arial, sans-serif;
@@ -224,7 +224,7 @@ body {
 }
 
 .arrow:active {
-  box-shadow: 1px 1px 0 var(--border);
+  box-shadow: 1px 1px 0 var(--accent);
   transform: translateY(-80%) translate(3px, 3px);
 }
 
@@ -237,8 +237,8 @@ body {
 .arrow-right { right: -4px; }
 
 @keyframes nudge-arrow {
-  0%, 100% { box-shadow: 4px 4px 0 var(--border); transform: translateY(-80%) translate(0, 0); }
-  50%       { box-shadow: 6px 6px 0 var(--border); transform: translateY(-80%) translate(-2px, -2px); }
+  0%, 100% { box-shadow: 4px 4px 0 var(--accent); transform: translateY(-80%) translate(0, 0); }
+  50%       { box-shadow: 6px 6px 0 var(--accent); transform: translateY(-80%) translate(-2px, -2px); }
 }
 
 .arrow-right {
