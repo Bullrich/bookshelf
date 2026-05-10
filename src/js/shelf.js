@@ -94,3 +94,89 @@
 
   window._shelf = { nudge: nudge, bookEls: bookEls, getActiveIndex: getActiveIndex };
 })();
+
+// ── Open Book + Hash Navigation ───────────────────────────────────────────────
+(function () {
+  "use strict";
+
+  var overlay   = document.getElementById("overlay");
+  var coverPage = document.getElementById("coverPage");
+  var bookEls   = window._shelf.bookEls;
+  var nudge     = window._shelf.nudge;
+  var getIdx    = window._shelf.getActiveIndex;
+
+  function starsHtml(rating) {
+    return "★".repeat(rating) + "☆".repeat(5 - rating);
+  }
+
+  function openBook(idx) {
+    var el     = bookEls[idx];
+    var d      = el.dataset;
+    var slug   = d.slug;
+    var review = document.getElementById("review-" + slug);
+
+    coverPage.style.background               = d.color;
+    document.getElementById("coverTitle").textContent  = d.title;
+    document.getElementById("coverAuthor").textContent = d.author;
+    document.getElementById("coverDate").textContent   = "Read " + d.date;
+
+    document.getElementById("reviewTitle").textContent = d.title;
+    document.getElementById("reviewStars").innerHTML   = starsHtml(parseInt(d.rating, 10));
+    document.getElementById("reviewDate").textContent  = "Read " + d.date;
+    document.getElementById("reviewBody").innerHTML    = review ? review.innerHTML : "";
+
+    overlay.classList.add("open");
+
+    if (location.hash !== "#" + slug) {
+      history.pushState(null, "", "#" + slug);
+    }
+  }
+
+  function closeBook() {
+    overlay.classList.remove("open");
+    history.pushState(null, "", location.pathname);
+  }
+
+  bookEls.forEach(function (el, i) {
+    el.addEventListener("click", function () {
+      if (el.classList.contains("active")) {
+        openBook(i);
+      } else {
+        el.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    });
+  });
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeBook();
+  });
+
+  document.getElementById("closeBtn").addEventListener("click", closeBook);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && overlay.classList.contains("open")) closeBook();
+    if (e.key === "Enter"  && !overlay.classList.contains("open")) openBook(getIdx());
+  });
+
+  function handleHash() {
+    var hash = location.hash.slice(1);
+    if (!hash) { closeBook(); return; }
+
+    var match = bookEls.findIndex(function (el) { return el.dataset.slug === hash; });
+    if (match === -1) return;
+
+    bookEls[match].scrollIntoView({ behavior: "instant", block: "nearest", inline: "center" });
+    setTimeout(function () { openBook(match); }, 120);
+  }
+
+  window.addEventListener("hashchange", handleHash);
+
+  window.addEventListener("popstate", function () {
+    if (!location.hash) { closeBook(); }
+    else { handleHash(); }
+  });
+
+  if (location.hash) {
+    setTimeout(handleHash, 150);
+  }
+})();
