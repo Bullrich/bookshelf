@@ -180,3 +180,20 @@
     setTimeout(handleHash, 150);
   }
 })();
+
+// ── Mobile Scroll Hint ────────────────────────────────────────────────────────
+(function () {
+  "use strict";
+
+  var hint  = document.getElementById("mobileHint");
+  var track = document.getElementById("track");
+
+  var isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  if (!isTouch) return;
+
+  hint.classList.add("visible");
+
+  track.addEventListener("scroll", function () {
+    hint.classList.remove("visible");
+  }, { once: true, passive: true });
+})();
