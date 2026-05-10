@@ -4,7 +4,8 @@
   "description": "A bookshelf with a list of books I have read",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "eleventy --serve",
+    "build": "eleventy"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Bullrich/bookshelf/issues"
   },
-  "homepage": "https://github.com/Bullrich/bookshelf#readme"
+  "homepage": "https://github.com/Bullrich/bookshelf#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.5"
+  }
 }
