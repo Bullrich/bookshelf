@@ -1,0 +1,38 @@
+/* ═══════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════ */
+:root {
+  --bg:        #0D0D0D;
+  --accent:    #FFD60A;
+  --border:    #FFFFFF;
+  --cream:     #F5EDD6;
+  --ink:       #000000;
+
+  --shadow-sm: 3px 3px 0 var(--accent);
+  --shadow-md: 5px 5px 0 var(--accent);
+  --shadow-lg: 7px 7px 0 var(--accent);
+
+  --border-rule: 3px solid var(--border);
+}
+
+/* ═══════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--border);
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
