@@ -1,0 +1,83 @@
+---
+layout: base.njk
+---
+
+<!-- ── HEADER ── -->
+<div class="header">
+  <div class="header-box">
+    <h1>Bookshelf</h1>
+  </div>
+  <p class="header-sub">Books I've read — in order</p>
+</div>
+
+<!-- ── SHELF ── -->
+<div class="shelf-outer">
+  <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous book">&#8249;</button>
+  <button class="arrow arrow-right" id="arrowRight" aria-label="Next book">&#8250;</button>
+
+  <div class="shelf-track" id="track">
+    {% for book in collections.books %}
+    <div class="book"
+         data-index="{{ loop.index0 }}"
+         data-slug="{{ book.fileSlug }}"
+         data-title="{{ book.data.title }}"
+         data-author="{{ book.data.author }}"
+         data-date="{{ book.data.dateRead | monthYear }}"
+         data-rating="{{ book.data.rating }}"
+         data-color="{{ book.data.color }}">
+      <div class="spine"
+           style="width:{{ book.data.width }}px;height:{{ book.data.height }}px;background:{{ book.data.color }}">
+        <span class="spine-title">{{ book.data.title }}</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="plank-wrap">
+    <div class="plank-face"></div>
+    <div class="plank-under"></div>
+  </div>
+</div>
+
+<!-- ── INFO BAR ── -->
+<div class="info-bar">
+  <div class="book-tag" id="bookTag" aria-live="polite"></div>
+  <div class="book-meta" id="bookMeta" aria-live="polite"></div>
+</div>
+
+<p class="scroll-hint">scroll · swipe · click to open</p>
+
+<!-- ── MOBILE SCROLL HINT ── -->
+<div class="mobile-hint" id="mobileHint" aria-hidden="true">
+  <span class="mobile-hint-arrow">&#8250;</span>
+</div>
+
+<!-- ── OPEN BOOK OVERLAY ── -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Book review">
+  <div class="open-book" id="openBook">
+
+    <div class="book-cover-page" id="coverPage">
+      <h2 class="cover-title" id="coverTitle"></h2>
+      <p class="cover-author" id="coverAuthor"></p>
+      <div class="cover-badge" id="coverDate"></div>
+    </div>
+
+    <div class="book-gutter"></div>
+
+    <div class="book-review-page">
+      <button class="close-btn" id="closeBtn" aria-label="Close review">&#x2715;</button>
+      <div class="review-title" id="reviewTitle"></div>
+      <div class="review-stars" id="reviewStars"></div>
+      <div class="review-date" id="reviewDate"></div>
+      <div class="review-body" id="reviewBody"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── HIDDEN REVIEW CONTENT (compiled at build time) ── -->
+<div class="book-reviews" hidden>
+  {% for book in collections.books %}
+  <div id="review-{{ book.fileSlug }}">{{ book.templateContent | safe }}</div>
+  {% endfor %}
+</div>
