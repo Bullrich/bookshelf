@@ -63,7 +63,7 @@ body::after {
   inset: 0;
   z-index: 9997;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 38%, rgba(0, 0, 0, 0.72) 100%);
+  background: radial-gradient(ellipse at center, transparent 38%, rgba(0, 0, 0, 0.50) 100%);
 }
 
 /* ═══════════════════════════════════════
@@ -95,9 +95,9 @@ body::after {
 .header-sub {
   margin-top: 14px;
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.55);
   text-transform: uppercase;
 }
 
@@ -227,9 +227,9 @@ body::after {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 1.4px;
+  letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.9);
   white-space: nowrap;
@@ -336,7 +336,7 @@ body::after {
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 3px;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.62);
   text-transform: uppercase;
   opacity: 0;
   transition: opacity 0.2s 0.06s;
@@ -350,9 +350,9 @@ body::after {
 .scroll-hint {
   margin-top: 22px;
   font-family: var(--mono);
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 5px;
-  color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.45);
   text-transform: uppercase;
 }
 
