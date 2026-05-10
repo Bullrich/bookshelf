@@ -125,7 +125,7 @@ body {
   flex-direction: column;
   cursor: pointer;
   transform-origin: bottom center;
-  filter: brightness(0.45) saturate(0.6);
+  filter: brightness(0.62) saturate(0.75);
   transition:
     transform 0.3s cubic-bezier(0.34, 1.5, 0.64, 1),
     filter 0.3s ease;
@@ -133,7 +133,7 @@ body {
 }
 
 .book.near {
-  filter: brightness(0.7) saturate(0.85);
+  filter: brightness(0.85) saturate(0.95);
   transform: scale(1.1) translateY(-4px);
   z-index: 4;
 }
