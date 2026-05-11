@@ -1,7 +1,6 @@
 # Bookshelf
 
-Personal reading log at [bookshelf.bullrich.dev](https://bookshelf.bullrich.dev).
-A dark neobrutalist bookshelf displaying books I've read, in chronological order.
+Live at **[bullrich.dev/bookshelf](https://bullrich.dev/bookshelf/)** — a dark neobrutalist bookshelf displaying books I've read, in chronological order.
 
 ## Running locally
 
@@ -21,15 +20,15 @@ npm run build    # production build to _site/
 title: Book Title
 author: Author Name
 dateRead: 2024-03-15      # ISO date — determines position on the shelf (left = oldest)
-rating: 4                 # Integer 1–5
+rating: 4                 # Integer 1–5 (optional)
 color: "#4361EE"          # Flat spine color — see colour guidance below
 width: 22                 # Spine width in px
 height: 112               # Spine height in px
 ---
-Your review goes here. Plain prose, a few sentences to a few paragraphs.
+Your review goes here. Leave the body empty if you have no review to write.
 ```
 
-3. Write your review as the markdown body (after the `---`).
+3. Optionally write your review as the markdown body (after the `---`).
 
 ## Frontmatter field reference
 
@@ -38,7 +37,7 @@ Your review goes here. Plain prose, a few sentences to a few paragraphs.
 | `title`    | string | yes      | Book title as it appears on the spine and overlay |
 | `author`   | string | yes      | Author full name |
 | `dateRead` | date   | yes      | ISO 8601 date you finished the book (`YYYY-MM-DD`) |
-| `rating`   | number | yes      | Star rating 1–5 |
+| `rating`   | number | **no**   | Star rating 1–5 — omit if you have no rating |
 | `color`    | string | yes      | Hex color for the spine background |
 | `width`    | number | yes      | Spine width in px — reflects book thickness |
 | `height`   | number | yes      | Spine height in px — reflects book physical height |

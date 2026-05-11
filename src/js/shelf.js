@@ -106,7 +106,9 @@
   var getIdx    = window._shelf.getActiveIndex;
 
   function starsHtml(rating) {
-    return "★".repeat(rating) + "☆".repeat(5 - rating);
+    if (!rating || isNaN(rating)) return "";
+    var n = Math.max(1, Math.min(5, rating));
+    return "★".repeat(n) + "☆".repeat(5 - n);
   }
 
   function openBook(idx) {

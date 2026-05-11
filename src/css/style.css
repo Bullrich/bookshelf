@@ -486,6 +486,10 @@ body::after {
   line-height: 28px;
 }
 
+.review-stars:empty {
+  display: none;
+}
+
 .review-date {
   font-size: 9px;
   letter-spacing: 2px;
