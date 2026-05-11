@@ -57,11 +57,18 @@
     }
   }, { passive: true });
 
-  // Redirect desktop wheel to vertical shelf scroll; skip when overlay is open
+  // Wheel → nudge one book per notch (mouse) or per threshold (trackpad)
+  // Accumulate small trackpad deltas; fire nudge once threshold is crossed.
+  var wheelAccum = 0;
   window.addEventListener("wheel", function (e) {
     if (overlayEl.classList.contains("open")) return;
+    if (e.ctrlKey || e.metaKey) return; // allow browser zoom
     e.preventDefault();
-    track.scrollTop += e.deltaY * 1.4;
+    wheelAccum += e.deltaY;
+    if (Math.abs(wheelAccum) >= 60) {
+      nudge(wheelAccum > 0 ? 1 : -1);
+      wheelAccum = 0;
+    }
   }, { passive: false });
 
   function nudge(dir) {
@@ -80,11 +87,11 @@
     if (e.key === "ArrowDown" || e.key === "ArrowRight") nudge(1);
   });
 
-  // Start at the top; force first book active immediately — no empty gap
+  // Center the first book on load so the first AND last book are reachable
   requestAnimationFrame(function () {
-    track.scrollTop = 0;
     activeIndex = 0;
     bookEls[0].classList.add("active");
+    bookEls[0].scrollIntoView({ behavior: "auto", block: "center" });
 
     var b = bookEls[0].dataset;
     bookTagEl.textContent  = b.title;
@@ -130,12 +137,17 @@
     document.getElementById("reviewDate").textContent  = "Read " + d.date;
     document.getElementById("reviewBody").innerHTML    = review ? review.innerHTML : "";
 
-    // Reset animation so it replays on every open
-    openBookEl.classList.remove("book-opening");
-    void openBookEl.offsetWidth;
+    // Flip the slab away like a coin turning edge-on
+    el.classList.remove("is-closing");
+    el.classList.add("is-opening");
 
-    overlay.classList.add("open");
-    openBookEl.classList.add("book-opening");
+    // Overlay opens mid-flip (when slab is edge-on)
+    setTimeout(function () {
+      openBookEl.classList.remove("book-opening");
+      void openBookEl.offsetWidth;
+      overlay.classList.add("open");
+      openBookEl.classList.add("book-opening");
+    }, 160);
 
     if (location.hash !== "#" + slug) {
       history.pushState(null, "", "#" + slug);
@@ -145,6 +157,14 @@
   function closeBook() {
     overlay.classList.remove("open");
     openBookEl.classList.remove("book-opening");
+
+    // Flip the slab back in
+    var activeEl = bookEls[getIdx()];
+    activeEl.classList.remove("is-opening");
+    void activeEl.offsetWidth;
+    activeEl.classList.add("is-closing");
+    setTimeout(function () { activeEl.classList.remove("is-closing"); }, 420);
+
     history.pushState(null, "", location.pathname);
   }
 
@@ -176,7 +196,7 @@
     var match = bookEls.findIndex(function (el) { return el.dataset.slug === hash; });
     if (match === -1) return;
 
-    bookEls[match].scrollIntoView({ behavior: "instant", block: "center", inline: "nearest" });
+    bookEls[match].scrollIntoView({ behavior: "auto", block: "center", inline: "nearest" });
     setTimeout(function () { openBook(match); }, 120);
   }
 

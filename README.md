@@ -1,6 +1,6 @@
 # Bookshelf
 
-Live at **[bullrich.dev/bookshelf](https://bullrich.dev/bookshelf/)** — a dark neobrutalist bookshelf displaying books I've read, in chronological order.
+Live at **[bullrich.dev/bookshelf](https://bullrich.dev/bookshelf/)** — a dark neobrutalist bookshelf displaying books I've read, newest first.
 
 A vertical pile of book spines where the centered book snaps into focus and scales up. Click any active book to open an animated review overlay.
 

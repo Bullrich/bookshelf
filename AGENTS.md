@@ -79,7 +79,7 @@ This site uses dark-background neobrutalism. These rules are intentional:
 - **Borders:** `3px solid #FFFFFF` — white, not black (black is invisible on dark bg)
 - **Hard shadows:** `5px 5px 0 #FFD60A` — accent color, zero blur, never black
 - **No border-radius** on interactive/structural elements
-- **No gradients** on any element (book spine colors are flat)
+- **No gradients on spine/slab colors** — spine and slab backgrounds must be flat hex colors
 - **No transparency, blur, or glassmorphism**
 - Inactive spines: `filter: brightness(0.42) saturate(0.55)`
 - Near spines: `filter: brightness(0.78) saturate(0.88)`, `scale(1.06)`
