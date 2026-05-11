@@ -1,7 +1,7 @@
 ---
 title: There Is No Antimemetics Division
 author: qntm
-dateRead: 2022-01-23
+dateRead: 2022-01
 color: "#335C81"
 width: 34
 height: 180

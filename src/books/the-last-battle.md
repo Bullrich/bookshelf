@@ -1,7 +1,7 @@
 ---
 title: The Last Battle
 author: C.S. Lewis
-dateRead: 2020-06-14
+dateRead: 2020-06
 color: "#D62828"
 width: 28
 height: 172

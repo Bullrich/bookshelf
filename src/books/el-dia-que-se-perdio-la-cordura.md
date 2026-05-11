@@ -1,7 +1,7 @@
 ---
 title: El día que se perdió la cordura
 author: Javier Castillo
-dateRead: 2020-07-19
+dateRead: 2020-07
 color: "#A01A1A"
 width: 36
 height: 178

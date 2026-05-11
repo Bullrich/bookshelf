@@ -1,7 +1,7 @@
 ---
 title: Horrorstor
 author: Grady Hendrix
-dateRead: 2024-05-19
+dateRead: 2024-05
 color: "#D91E7A"
 width: 33
 height: 178
