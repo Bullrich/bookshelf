@@ -10,11 +10,8 @@ layout: base.njk
   <p class="header-sub">Books I've read — in order</p>
 </div>
 
-<!-- ── SHELF ── -->
+<!-- ── SHELF — vertical pile of spines ── -->
 <div class="shelf-outer">
-  <button class="arrow arrow-left" id="arrowLeft" aria-label="Previous book">&#8249;</button>
-  <button class="arrow arrow-right" id="arrowRight" aria-label="Next book">&#8250;</button>
-
   <div class="shelf-track" id="track">
     {% for book in collections.books %}
     <div class="book"
@@ -24,18 +21,17 @@ layout: base.njk
          data-author="{{ book.data.author }}"
          data-date="{{ book.data.dateRead | monthYear }}"
          data-rating="{{ book.data.rating }}"
-         data-color="{{ book.data.color }}">
-      <div class="spine"
-           style="width:{{ book.data.width }}px;height:{{ book.data.height }}px;background:{{ book.data.color }}">
-        <span class="spine-title">{{ book.data.title }}</span>
+         data-color="{{ book.data.color }}"
+         style="--thick: {{ book.data.width }}">
+      <div class="spine-slab" style="background:{{ book.data.color }}">
+        <div class="slab-edge"></div>
+        <div class="slab-text">
+          <span class="slab-title">{{ book.data.title }}</span>
+          <span class="slab-author">{{ book.data.author }}</span>
+        </div>
       </div>
     </div>
     {% endfor %}
-  </div>
-
-  <div class="plank-wrap">
-    <div class="plank-face"></div>
-    <div class="plank-under"></div>
   </div>
 </div>
 
@@ -49,7 +45,7 @@ layout: base.njk
 
 <!-- ── MOBILE SCROLL HINT ── -->
 <div class="mobile-hint" id="mobileHint" aria-hidden="true">
-  <span class="mobile-hint-arrow">&#8250;</span>
+  <span class="mobile-hint-arrow">&#8595;</span>
 </div>
 
 <!-- ── OPEN BOOK OVERLAY ── -->
